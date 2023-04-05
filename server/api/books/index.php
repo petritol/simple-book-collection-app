@@ -15,7 +15,7 @@
             case 'POST':
                 $json = file_get_contents('php://input');
                 $data = json_decode($json, true);
-                if (!isset($data['title'])) {
+                if (!isset($data['title']) || strlen($data['title']) == 0) {
                     http_response_code(400);
                     throw new exception('title is required');
                 }
