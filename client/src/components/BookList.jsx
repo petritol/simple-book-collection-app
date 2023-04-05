@@ -8,7 +8,7 @@ function BookList(props) {
         if (listInnerRef.current) {
           const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
           if (scrollTop + clientHeight === scrollHeight) {
-            props.fetchBooks();
+            props.loadBooks();
           }
         }
     };

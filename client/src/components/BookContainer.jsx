@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { loadBooks, addBook, deleteBook } from "../api";
 import BookForm from "./BookForm";
 import BookList from "./BookList";
-import errorHandler from "../errorHandler";
 
 function BookContainer() {
   const [ books, setBooks ] = useState([]);
@@ -11,68 +10,56 @@ function BookContainer() {
 
   const doFetch = useRef(true);
 
-  const axiosClient = axios.create({
-    baseURL: "http://localhost:8000/api/books/"
-  });
-
-  async function fetchBooks() {
-    try {
-      const res = await axiosClient.get(`?page=${page}`);
+  async function handleLoadBooks() {
+    const res = await loadBooks(page);
+    if (res.data) {
       setBooks(prevState => [...prevState, ...res.data]);
       setPage(page + 1);
       setIsLoading(false);
-    } catch (error) {
-      errorHandler(error);
     }
-  };
+  }
 
   useEffect(() => {
     // Prevent fetchBooks() from being called twice on dev environments with React.strictMode
     if (doFetch.current) {
-      fetchBooks();
+      handleLoadBooks();
       doFetch.current = false;
     }
   }, []);
 
-  async function addBook(name, author) {
-    let id, timestamp = '';
-    try {
-      const res = await axiosClient.post('/', {
-        title: name,
-        author: author
-      });
-      id = res.data['id'];
-      timestamp = res.data['timestamp'];
+  async function handleAddBook(name, author) {
+    setIsLoading(true);
+    const res = await addBook(name, author);
+    if (res.data) {
       const newBook = {
-        id: id,
+        id: res.data['id'],
         name: name,
         author: author,
-        timestamp: timestamp
+        timestamp: res.data['timestamp']
       };
       setBooks([newBook, ...books]);
-    } catch (error) {
-      errorHandler(error);
     }
+    setIsLoading(false);
   }
 
-  async function deleteBook(id) {
-    try {
-      const res = await axiosClient.delete(`${id}`);
+  async function handleDeleteBook(id) {
+    setIsLoading(true);
+    const res = await deleteBook(id);
+    if (res) {
       const updatedBooks = books.filter((book) => id !== book.id);
       setBooks(updatedBooks);
-    } catch (error) {
-      errorHandler(error);
     }
+    setIsLoading(false);
   }
 
   return (
     <>
-      <BookForm addBook={addBook} />
+      <BookForm addBook={handleAddBook} />
       {isLoading ? <div>Loading...</div> :
         <BookList
           books = {books}
-          deleteBook={deleteBook}
-          fetchBooks={fetchBooks}
+          deleteBook={handleDeleteBook}
+          loadBooks={handleLoadBooks}
         />
       }
     </>
