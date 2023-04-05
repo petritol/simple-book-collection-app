@@ -16,7 +16,11 @@ function errorHandler(error) {
 
 export async function loadBooks(page) {
     try {
-        const res = await axiosClient.get(`?page=${page}`);
+        const res = await axiosClient.get('/', {
+            params: {
+                page: page
+            }
+        });
         return res;
     } catch (error) {
         errorHandler(error);
@@ -37,7 +41,11 @@ export async function addBook(name, author) {
 
 export async function deleteBook(id) {
     try {
-        await axiosClient.delete(`${id}`);
+        await axiosClient.delete('/', {
+            params: {
+                id: id
+            }
+        });
         return true;
     } catch (error) {
         errorHandler(error);
