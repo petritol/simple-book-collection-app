@@ -13,8 +13,7 @@
         $method = $_SERVER['REQUEST_METHOD'];
         switch($method) {
             case 'POST':
-                $json = file_get_contents('php://input');
-                $data = json_decode($json, true);
+                $data = json_decode(file_get_contents('php://input'), true);
                 if (!isset($data['title']) || strlen($data['title']) == 0) {
                     http_response_code(400);
                     throw new exception('title is required');
@@ -42,12 +41,12 @@
                 echo json_encode($result);
                 break;
             case 'DELETE':
-                $sth = $db->prepare('DELETE FROM books WHERE rowid = ?');
-                $sth->execute([basename($_SERVER["REQUEST_URI"])]);
-                if ($sth->rowCount() == 0) {
-                    http_response_code(404);
-                    throw new exception('Book not found');
+                if (!isset($_GET['id']) || strlen($_GET['id']) == 0) {
+                    http_response_code(400);
+                    throw new exception('id is required');
                 }
+                $sth = $db->prepare('DELETE FROM books WHERE rowid = ?');
+                $sth->execute([$_GET['id']]);
                 break;
         }
     } catch (Exception $e) {
