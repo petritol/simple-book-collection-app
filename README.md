@@ -4,7 +4,7 @@ This was made for demonstration purposes using React and TypeScript as the front
 ## Installation
 Note: These instructions assume you are running Ubuntu Desktop on WSL2 or as the actual OS.
 ### Frontend
-To install the required packages, run the following command in the project root directory:
+To install the required packages, run the following command in the /client directory:
 ```
 npm install
 ```
@@ -24,7 +24,7 @@ To start the backend, navigate to the /server directory and run:
 ```
 php -S localhost:8000
 ```
-For the frontend, start a new terminal in the project root directory and run:
+For the frontend, start a new terminal in the /client directory and run:
 ```
 npm start
 ```
