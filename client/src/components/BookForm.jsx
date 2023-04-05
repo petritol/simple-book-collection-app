@@ -7,17 +7,11 @@ function BookForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        const formJson = Object.fromEntries(formData.entries());
-        if (formJson.bookName.length === 0) {
+        if (bookName.length === 0) {
             alert("Book name required!");
             return;
         }
-        if (formJson.authorName.length === 0) {
-            formJson.authorName = null;
-        }
-        props.addBook(formJson.bookName, formJson.authorName);
+        props.addBook(bookName, authorName);
         setBookName('');
         setAuthorName('');
     }
