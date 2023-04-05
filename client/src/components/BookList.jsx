@@ -15,7 +15,10 @@ function BookList(props) {
     return (
             <ul
                 className="book-list"
-                onScroll={() => handleScroll()}
+                onScroll={() => {
+                    if (!props.isLastBookReceived)
+                        handleScroll()
+                }}
                 ref={listInnerRef}
             >
                 {props.books.map((book) => (

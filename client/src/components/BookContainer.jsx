@@ -7,6 +7,7 @@ function BookContainer() {
   const [ books, setBooks ] = useState([]);
   const [ page, setPage ] = useState(1);
   const [ isLoading, setIsLoading ] = useState(true);
+  const [ isLastBookReceived, setIsLastBookReceived ] = useState(false);
 
   const doFetch = useRef(true);
 
@@ -16,6 +17,8 @@ function BookContainer() {
       setBooks(prevState => [...prevState, ...res.data]);
       setPage(page + 1);
       setIsLoading(false);
+      if (res.data.length === 0)
+        setIsLastBookReceived(true);
     }
   }
 
@@ -49,6 +52,8 @@ function BookContainer() {
       const updatedBooks = books.filter((book) => id !== book.id);
       setBooks(updatedBooks);
     }
+    if (books.length < 20 && !isLastBookReceived)
+      handleLoadBooks();
     setIsLoading(false);
   }
 
@@ -60,8 +65,8 @@ function BookContainer() {
           books = {books}
           deleteBook={handleDeleteBook}
           loadBooks={handleLoadBooks}
-        />
-      }
+          isLastBookReceived={isLastBookReceived}
+        />}
     </>
   )
 }
