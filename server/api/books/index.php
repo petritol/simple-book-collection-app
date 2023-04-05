@@ -20,7 +20,10 @@
                     throw new exception('title is required');
                 }
                 $title = $data['title'];
-                $author = isset($data['author']) ? $data['author'] : NULL;
+                $author = NULL;
+                if (isset($data['author']) && strlen($data['author']) > 0) {
+                    $author = $data['author'];
+                }
                 $timestamp = date('Y-m-d\TH:i:sp');
                 $sth = $db->prepare('INSERT INTO books (title, author, timestamp) VALUES (?, ?, ?)');
                 $sth->execute([$title, $author, $timestamp]);
