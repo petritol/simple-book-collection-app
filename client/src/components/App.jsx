@@ -52,7 +52,6 @@ function App() {
       setBooks([newBook, ...books]);
     } catch (error) {
       errorHandler(error);
-      return;
     }
   }
 
@@ -63,7 +62,6 @@ function App() {
       setBooks(updatedBooks);
     } catch (error) {
       errorHandler(error);
-      return;
     }
   }
 
