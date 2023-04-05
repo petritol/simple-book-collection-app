@@ -1,5 +1,5 @@
 # A simple book collection app
-This was made for demonstration purposes using React and TypeScript as the frontend and PHP as the backend as per request.
+This was made for demonstration purposes using React as the frontend and PHP as the backend as per request.
 
 ## Installation
 Note: These instructions assume you are running Ubuntu Desktop on WSL2 or as the actual OS.
