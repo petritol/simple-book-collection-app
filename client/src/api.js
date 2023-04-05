@@ -37,7 +37,7 @@ export async function addBook(name, author) {
 
 export async function deleteBook(id) {
     try {
-        const res = await axiosClient.delete(`${id}`);
+        await axiosClient.delete(`${id}`);
         return true;
     } catch (error) {
         errorHandler(error);
