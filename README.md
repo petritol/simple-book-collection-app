@@ -39,3 +39,4 @@ in your favorite browser. Happy book collecting!
 - Actual styling, this thing looks hideous
 - Toasts instead of alert() for feedback
 - Tests for frontend and backend
+- Replace the backend with something more robust, for example Laravel
