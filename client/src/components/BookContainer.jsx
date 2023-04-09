@@ -14,7 +14,7 @@ function BookContainer() {
   async function handleLoadBooks() {
     const res = await loadBooks(page);
     if (res.data) {
-      setBooks(prevState => [...prevState, ...res.data]);
+      setBooks(prevBooks => [...prevBooks, ...res.data]);
       setPage(page + 1);
       setIsLoading(false);
       if (res.data.length === 0)
@@ -40,7 +40,7 @@ function BookContainer() {
         author: author,
         timestamp: res.data['timestamp']
       };
-      setBooks([newBook, ...books]);
+      setBooks(prevBooks => [newBook, ...prevBooks]);
     }
     setIsLoading(false);
   }
