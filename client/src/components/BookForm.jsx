@@ -21,10 +21,11 @@ function BookForm(props) {
     }
 
     function handleChange(e) {
+        const {name, value} = e.target;
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
-                [e.target.name]: e.target.value
+                [name]: value
             }
         })
     }
