@@ -1,23 +1,19 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/client/node_modules
-/client/.pnp
-/client.pnp.js
-
-# testing
-/client/coverage
-
-# production
-/client/build
-
-# misc
-/client/.DS_Store
-/client/.env.local
-/client/.env.development.local
-/client/.env.test.local
-/client/.env.production.local
-
-/client/npm-debug.log*
-/client/yarn-debug.log*
-/client/yarn-error.log*
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/node_modules
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
