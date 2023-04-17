@@ -3,6 +3,7 @@ This was made for demonstration purposes using React frontend with Laravel backe
 
 ## Installation
 Note: These instructions assume you are running Ubuntu Desktop on WSL2 or as the actual OS with Docker, PHP, Composer, Node and npm already installed.
+
 Install the PHP dependencies:
 ```
 composer install
