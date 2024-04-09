@@ -1,37 +1,30 @@
 # A simple book collection app
-This was made for demonstration purposes using React as the frontend and PHP as the backend as per request.
+This was made for demonstration purposes using React frontend with Laravel backend.
 
 ## Installation
-Note: These instructions assume you are running Ubuntu Desktop on WSL2 or as the actual OS.
-### Frontend
-To install the required packages, run the following command in the /client directory:
+Note: These instructions assume you are running Ubuntu Desktop on WSL2 or as the actual OS with Docker, PHP, Composer, Node and npm already installed.
+
+Install the PHP dependencies:
+```
+composer install
+```
+Install the Javascript dependencies:
 ```
 npm install
 ```
-### Backend
-To install PHP, run:
+Build the static assets:
 ```
-sudo apt install php
-```
-To install SQLite 3 and its PHP extension, run:
-```
-sudo apt-get install sqlite3
-sudo apt-get install php-sqlite3
+npm run build
 ```
 
 ## Running the app
-To start the backend, navigate to the /server directory and run:
+Start the Docker container by running:
 ```
-php -S localhost:8000
+./vendor/bin/sail up
 ```
-For the frontend, start a new terminal in the /client directory and run:
+After the container is up and running, navigate to
 ```
-npm start
-```
-
-This should start the frontend in your browser, but in case it doesn't, you can access the app by navigating to
-```
-http://localhost:3000/
+http://localhost/
 ```
 in your favorite browser. Happy book collecting!
 
@@ -39,4 +32,3 @@ in your favorite browser. Happy book collecting!
 - Actual styling, this thing looks hideous
 - Toasts instead of alert() for feedback
 - Tests for frontend and backend
-- Replace the backend with something more robust, for example Laravel
